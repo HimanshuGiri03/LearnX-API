@@ -5,6 +5,12 @@ const courseController = require('../controllers/coursesController');
 const router = express.Router({ mergeParams : true });  
 
 router.route('/')
-    .get(courseController.getCourses);
+    .get(courseController.getCourses)
+    .post(courseController.addCourse);
+
+router.route('/:id')
+    .get(courseController.getCourse) 
+    .put(courseController.updateCourse)
+    .delete(courseController.deleteCourse);
 
 module.exports = router;
