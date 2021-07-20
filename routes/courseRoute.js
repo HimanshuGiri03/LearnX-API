@@ -13,11 +13,11 @@ router.route('/')
         select : 'name description'
     })
     , courseController.getCourses)
-    .post(auth.protect, courseController.addCourse);
+    .post(auth.protect, auth.authorize('publisher', 'admin'), courseController.addCourse);
 
 router.route('/:id')
     .get(courseController.getCourse) 
-    .put(auth.protect, courseController.updateCourse)
-    .delete(auth.protect, courseController.deleteCourse);
+    .put(auth.protect, auth.authorize('publisher', 'admin'), courseController.updateCourse)
+    .delete(auth.protect, auth.authorize('publisher', 'admin'), courseController.deleteCourse);
 
 module.exports = router;

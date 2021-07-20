@@ -14,18 +14,18 @@ router.use('/:bootcampId/courses', courseRouter);
 
 router.route('/')
     .get(advancedResults(Bootcamp, 'courses'), bootcampController.getBootcamps)
-    .post(auth.protect, bootcampController.createBootcamp);
+    .post(auth.protect, auth.authorize('publisher', 'admin'), bootcampController.createBootcamp);
 
 router.route('/:id')
     .get(bootcampController.getBootcamp)
-    .put(auth.protect, bootcampController.updateBootcamp)
-    .delete(auth.protect, bootcampController.deleteBootcamp);
+    .put(auth.protect, auth.authorize('publisher', 'admin'), bootcampController.updateBootcamp)
+    .delete(auth.protect, auth.authorize('publisher', 'admin'), bootcampController.deleteBootcamp);
 
 router.route('/radius/:zipcode/:distance')
     .get(bootcampController.getBootcampsInRadius);  
 
 router.route('/:id/photo')
-    .put(auth.protect, bootcampController.bootcampPhotoUpload);    
+    .put(auth.protect, auth.authorize('publisher', 'admin'), bootcampController.bootcampPhotoUpload);    
 
 
 module.exports = router;
