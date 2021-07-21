@@ -1,11 +1,12 @@
 const express = require('express');
 const courseController = require('../controllers/coursesController');
 const Courses = require('../models/courseModel');
-const advancedResults = require('../middleware/advancedResults');
-const auth = require('../middleware/auth');
 
 // if you want to access params from the parent router
 const router = express.Router({ mergeParams : true });  
+
+const advancedResults = require('../middleware/advancedResults');
+const auth = require('../middleware/auth');
 
 router.route('/')
     .get(advancedResults(Courses, {
