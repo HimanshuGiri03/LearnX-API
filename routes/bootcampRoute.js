@@ -4,6 +4,7 @@ const Bootcamp = require('../models/bootcampModel');
 
 //Include other Resource Router
 const courseRouter = require('./courseRoute');
+const reviewRouter = require('./reviewRoute');
 
 const router = express.Router();  
 
@@ -12,6 +13,7 @@ const auth = require('../middleware/auth');
 
 //Re-route into other resource Router
 router.use('/:bootcampId/courses', courseRouter);
+router.use('/:bootcampId/reviews', reviewRouter);
 
 router.route('/')
     .get(advancedResults(Bootcamp, 'courses'), bootcampController.getBootcamps)
