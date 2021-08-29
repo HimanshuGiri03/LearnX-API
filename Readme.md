@@ -19,3 +19,6 @@ npm run dev
 #Run in prod mode
 npm start
 ```
+
+### Documentation
+https://documenter.getpostman.com/view/12101644/TzsfokvM
